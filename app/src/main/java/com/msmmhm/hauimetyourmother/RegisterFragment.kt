@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -41,18 +42,40 @@ class RegisterFragment : Fragment() {
     }
 
     private fun accountRegister() {
-        val email = binding.editTextTextPersonName.text.toString()
-        val password = binding.editTextTextPassword.text.toString()
-        auth.createUserWithEmailAndPassword(email, password)
+        val email = binding.EmailInput.text.toString()
+        val password1 = binding.PasswordFirstInput.text.toString()
+        val password2 = binding.passwordSecondInput.text.toString()
+        if(checkData(email, password1, password2)) {
+            auth.createUserWithEmailAndPassword(email, password1)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Snackbar.make(requireView(), "Account created successfully", Snackbar.LENGTH_LONG)
+                            .show()
+                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                    } else {
+                        Snackbar.make(requireView(), "Failed to register new account", Snackbar.LENGTH_LONG)
+                            .show()
+                    }
+                }
+        }
     }
 
-    companion object {
-
-        fun newInstance(param1: String, param2: String) =
-            RegisterFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
+    private fun checkData(email: String, password1: String, password2: String): Boolean {
+        val emailRegex = Regex("^\\S+@\\S+\\.\\S+$")
+        val passwordRegex = Regex("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
+        if(!email.matches(emailRegex)) {
+            Snackbar.make(requireView(), "Wrong email address", Snackbar.LENGTH_LONG)
+                .show()
+            return false
+        } else if(password1 != password2){
+            Snackbar.make(requireView(), "Passwords aren't identical", Snackbar.LENGTH_LONG)
+                .show()
+            return false
+        } else if(!password1.matches(passwordRegex)){
+            Snackbar.make(requireView(), "Password must contain both letters and numbers and be at least 8 letters long", Snackbar.LENGTH_LONG)
+                .show()
+            return false
+        }
+        return true
     }
 }
