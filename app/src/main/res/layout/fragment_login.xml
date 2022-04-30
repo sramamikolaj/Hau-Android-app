@@ -17,6 +17,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/LogoTransparent_login"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/logo_transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/LoginEmailInput"
         android:layout_width="wrap_content"
@@ -26,10 +37,11 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/LoginPasswordInput"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@+id/LogoTransparent_login"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/LoginPasswordInput"
@@ -43,7 +55,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginEmailInput" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginEmailInput"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/LoginButton"
@@ -56,4 +69,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoginPasswordInput" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
