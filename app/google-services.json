@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "943379718455",
+    "project_id": "hau-i-met-your-mother",
+    "storage_bucket": "hau-i-met-your-mother.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943379718455:android:064e3dbcc39679b485bab2",
+        "android_client_info": {
+          "package_name": "com.msmmhm.hauimetyourmother"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943379718455-nk4fvtaf4bat625boa9l1ili8mhe1ir7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu8fHiZgy1j36osp7V-4cPRkQ_D4VDg-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943379718455-nk4fvtaf4bat625boa9l1ili8mhe1ir7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

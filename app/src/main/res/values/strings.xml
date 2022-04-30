@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="RegisterButton">Register</string>
     <string name="LoginButton">Login</string>
+    <string name="RegisterNewButton">"Register "</string>
 </resources>
