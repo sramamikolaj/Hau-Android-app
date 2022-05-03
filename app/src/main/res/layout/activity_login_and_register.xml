@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".LoginAndRegister">
 
+    <ImageView
+        android:id="@+id/logoTransparent"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/logo_transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/LogAndRegNavigation"
         android:name="androidx.navigation.fragment.NavHostFragment"
