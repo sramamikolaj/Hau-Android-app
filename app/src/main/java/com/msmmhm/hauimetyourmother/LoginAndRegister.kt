@@ -5,6 +5,7 @@ import android.os.Bundle
 
 class LoginAndRegister : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        //comment ~ mroz
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_and_register)
     }
