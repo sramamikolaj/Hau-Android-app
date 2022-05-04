@@ -5,4 +5,5 @@
     <string name="GoToRegisterButton">No account? \n Register now!</string>
     <string name="LoginButton">Already have an account? \n Log in now!</string>
     <string name="RegisterButton">Register</string>
+    <string name="sign_out_button">Sign out</string>
 </resources>
