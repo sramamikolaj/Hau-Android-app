@@ -30,7 +30,7 @@ class RegisterFragment : Fragment() {
         binding = FragmentRegisterBinding.inflate(layoutInflater)
         return binding.root
     }
-
+    //TEST 2
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.GoToLoginButton.setOnClickListener{
