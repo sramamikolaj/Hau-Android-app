@@ -27,10 +27,17 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
         Log.w(ContentValues.TAG,"USER="+auth.currentUser.toString())
-        if((auth.currentUser != null) and (auth.currentUser!!.isEmailVerified()) )
+        if((auth.currentUser != null))
         {
-            Log.w(ContentValues.TAG,"userLoggedIn")
-            userLoggedIn()
+            if(auth.currentUser!!.isEmailVerified())
+            {
+                Log.w(ContentValues.TAG,"userLoggedIn")
+                userLoggedIn()
+            } else {
+                Toast.makeText(getContext(), "Please verify your e-mail", Toast.LENGTH_SHORT).show()
+            }
+
+
         }
     }
 

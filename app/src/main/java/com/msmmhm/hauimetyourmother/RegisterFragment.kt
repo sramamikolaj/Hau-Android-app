@@ -50,13 +50,13 @@ class RegisterFragment : Fragment() {
             auth.createUserWithEmailAndPassword(email, password1)
             .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(getContext(), "Registered", Toast.LENGTH_LONG).show()
+                        //Toast.makeText(getContext(), "Registered", Toast.LENGTH_LONG).show()
                         Log.w(TAG, "createUserWithEmail:success", task.exception)
 
                         val user = Firebase.auth.currentUser
                         user!!.sendEmailVerification()
                             .addOnSuccessListener {
-                                Toast.makeText(getContext(), "Instructions Sent...", Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(getContext(), "Instructions Sent...", Toast.LENGTH_SHORT).show()
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(getContext(), "Failed to send due to " + e.message, Toast.LENGTH_SHORT).show()
