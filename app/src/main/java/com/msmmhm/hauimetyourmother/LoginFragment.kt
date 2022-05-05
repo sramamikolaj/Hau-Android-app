@@ -1,11 +1,14 @@
 package com.msmmhm.hauimetyourmother
 
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -51,11 +54,13 @@ class LoginFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Snackbar.make(requireView(), "Logged in successfully", Snackbar.LENGTH_LONG)
+                    Log.w(ContentValues.TAG, "loginWithEmail:success", task.exception)
+                    Toast.makeText(getContext(), "Login.", Toast.LENGTH_LONG)
                         .show()
                     userLoggedIn()
                 } else {
-                    Snackbar.make(requireView(), "Wrong email or password", Snackbar.LENGTH_LONG)
+                    Log.w(ContentValues.TAG, "loginWithEmail:failure", task.exception)
+                    Toast.makeText(getContext(), "Invalid email or password.", Toast.LENGTH_LONG)
                         .show()
                 }
             }
