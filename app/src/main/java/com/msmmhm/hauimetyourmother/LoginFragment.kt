@@ -51,13 +51,24 @@ class LoginFragment : Fragment() {
     private fun userLogin() {
         val email = binding.LoginEmailInput.text.toString()
         val password = binding.LoginPasswordInput.text.toString()
+
+        Log.d(ContentValues.TAG,"USER1 "+auth.currentUser.toString())
+
+
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.w(ContentValues.TAG, "loginWithEmail:success", task.exception)
-                    Toast.makeText(getContext(), "Login.", Toast.LENGTH_LONG)
-                        .show()
-                    userLoggedIn()
+                    Log.d(ContentValues.TAG,"USER2 "+auth.currentUser.toString())
+                    if (auth.currentUser!!.isEmailVerified())
+                    {
+                        Log.w(ContentValues.TAG, "loginWithEmail:success", task.exception)
+                        Toast.makeText(getContext(), "User is verified...", Toast.LENGTH_SHORT).show()
+                        userLoggedIn()
+                    } else
+                    {
+                        Toast.makeText(getContext(), "User is not verified...", Toast.LENGTH_SHORT).show();
+                        Log.w(ContentValues.TAG,"EMAIL NOT VERIFIED")
+                    }
                 } else {
                     Log.w(ContentValues.TAG, "loginWithEmail:failure", task.exception)
                     Toast.makeText(getContext(), "Invalid email or password.", Toast.LENGTH_LONG)
