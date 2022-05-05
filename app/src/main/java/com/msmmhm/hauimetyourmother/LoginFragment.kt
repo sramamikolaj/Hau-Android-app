@@ -22,10 +22,14 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var auth: FirebaseAuth
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
-        if(auth.currentUser != null){
+        Log.w(ContentValues.TAG,"USER="+auth.currentUser.toString())
+        if((auth.currentUser != null) and (auth.currentUser!!.isEmailVerified()) )
+        {
+            Log.w(ContentValues.TAG,"userLoggedIn")
             userLoggedIn()
         }
     }
@@ -52,27 +56,24 @@ class LoginFragment : Fragment() {
         val email = binding.LoginEmailInput.text.toString()
         val password = binding.LoginPasswordInput.text.toString()
 
-        Log.d(ContentValues.TAG,"USER1 "+auth.currentUser.toString())
 
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d(ContentValues.TAG,"USER2 "+auth.currentUser.toString())
                     if (auth.currentUser!!.isEmailVerified())
                     {
-                        Log.w(ContentValues.TAG, "loginWithEmail:success", task.exception)
-                        Toast.makeText(getContext(), "User is verified...", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(getContext(), "Logged in", Toast.LENGTH_SHORT).show()
+                        Log.w(ContentValues.TAG, "loginWithEmail:success"+auth.currentUser.toString(), task.exception)
                         userLoggedIn()
                     } else
                     {
-                        Toast.makeText(getContext(), "User is not verified...", Toast.LENGTH_SHORT).show();
-                        Log.w(ContentValues.TAG,"EMAIL NOT VERIFIED")
+                        Toast.makeText(getContext(), "Please verify e-mail", Toast.LENGTH_SHORT).show();
+                        Log.w(ContentValues.TAG,"loginWithEmail:failure:Email not verified")
                     }
                 } else {
-                    Log.w(ContentValues.TAG, "loginWithEmail:failure", task.exception)
-                    Toast.makeText(getContext(), "Invalid email or password.", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_LONG).show()
+                    Log.w(ContentValues.TAG, "loginWithEmail:failure:Wrong email or password", task.exception)
                 }
             }
     }

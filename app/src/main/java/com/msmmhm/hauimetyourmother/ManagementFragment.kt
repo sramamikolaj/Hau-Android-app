@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -42,6 +43,7 @@ class ManagementFragment : Fragment() {
         //Log out button
         binding.SignOutButton.setOnClickListener{
             auth.signOut()
+            Toast.makeText(getContext(),"Signed out",Toast.LENGTH_SHORT).show()
             val i = Intent(activity, LoginAndRegister::class.java)
             activity?.finish()
             startActivity(i)

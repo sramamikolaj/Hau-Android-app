@@ -50,9 +50,8 @@ class RegisterFragment : Fragment() {
             auth.createUserWithEmailAndPassword(email, password1)
             .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        Toast.makeText(getContext(), "Registered", Toast.LENGTH_LONG).show()
                         Log.w(TAG, "createUserWithEmail:success", task.exception)
-                        Toast.makeText(getContext(), "Registered.",
-                            Toast.LENGTH_LONG).show()
 
                         val user = Firebase.auth.currentUser
                         user!!.sendEmailVerification()
@@ -65,9 +64,8 @@ class RegisterFragment : Fragment() {
 
                         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     } else {
+                        Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_LONG).show()
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(getContext(), "Authentication failed.",
-                            Toast.LENGTH_LONG).show()
                     }
                 }
         }
