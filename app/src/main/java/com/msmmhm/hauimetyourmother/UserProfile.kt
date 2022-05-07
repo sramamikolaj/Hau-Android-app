@@ -29,6 +29,7 @@ class UserProfile(
             "email" to email
         )
     }
+
     fun updateToDatabase(){
         userProfiles.document(auth.currentUser?.uid.toString()).set(getHashMap())
     }

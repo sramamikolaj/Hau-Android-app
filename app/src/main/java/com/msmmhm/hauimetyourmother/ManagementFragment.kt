@@ -1,20 +1,25 @@
 package com.msmmhm.hauimetyourmother
 
-import android.content.ContentValues.TAG
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.msmmhm.hauimetyourmother.databinding.FragmentManagementBinding
+import java.io.ByteArrayOutputStream
 
 
 class ManagementFragment : Fragment() {
@@ -33,21 +38,24 @@ class ManagementFragment : Fragment() {
     ): View? {
         binding = FragmentManagementBinding.inflate(layoutInflater)
         updateTextViews()
+        loadWithGlide()
         return binding.root
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //Log out button
-        binding.SignOutButton.setOnClickListener{
+        binding.SignOutButton.setOnClickListener {
             auth.signOut()
-            Toast.makeText(context,"Signed out",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Signed out", Toast.LENGTH_SHORT).show()
             val i = Intent(activity, LoginAndRegister::class.java)
             activity?.finish()
             startActivity(i)
+        }
+        binding.profilePicture.setOnClickListener {
+            openGallery()
         }
     }
 
@@ -55,6 +63,44 @@ class ManagementFragment : Fragment() {
     private fun updateTextViews() {
         binding.Username.text = (activity as MainActivity).userProfile.getHashMap()["username"]
         binding.EmailAddress.text = (activity as MainActivity).userProfile.getHashMap()["email"]
+    }
+
+
+    private fun openGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        resultLauncher.launch(intent)
+    }
+
+    private var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                var uri: Uri? = result.data?.data
+                binding.profilePicture.setImageURI(uri)
+                profilePictureChange(uri)
+            }
+        }
+
+    private fun profilePictureChange(uri: Uri?) {
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        val mountainImagesRef = storageRef.child("ProfilePictures/${auth.currentUser?.uid.toString()}.jpg")
+        binding.profilePicture.isDrawingCacheEnabled = true
+        binding.profilePicture.buildDrawingCache()
+        val bitmap = (binding.profilePicture.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 45, baos)
+        val data = baos.toByteArray()
+        mountainImagesRef.putBytes(data)
+
+        loadWithGlide()
+    }
+    private fun loadWithGlide() {
+        val storageReference = Firebase.storage.reference.child("ProfilePictures/${auth.currentUser?.uid.toString()}.jpg")
+        Glide.with(this /* context */)
+            .load(storageReference)
+            .into(binding.profilePicture)
     }
 
 }
