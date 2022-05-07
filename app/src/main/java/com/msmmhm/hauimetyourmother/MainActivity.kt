@@ -17,11 +17,14 @@ import com.msmmhm.hauimetyourmother.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+    var userProfile: UserProfile = UserProfile()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth
+
+        userProfile.getFromDatabase()
 
         binding.GoToFriends.setOnClickListener{
             goToFriends()
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             goToDashboard()
         }
     }
+
 
     private fun goToFriends(){
         Snackbar.make(binding.root, "Not yet implemented", Snackbar.LENGTH_SHORT)

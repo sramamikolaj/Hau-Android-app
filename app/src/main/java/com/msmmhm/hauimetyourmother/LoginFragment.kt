@@ -27,8 +27,10 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
         Log.w(ContentValues.TAG,"USER="+auth.currentUser.toString())
-        if((auth.currentUser != null))
+        if(auth.currentUser != null)
         {
+            userLoggedIn() // <- to be deleted when email verification is set up
+            /*  UNCOMMENT TO START EMAIL VERIFICATION
             if(auth.currentUser!!.isEmailVerified())
             {
                 Log.w(ContentValues.TAG,"userLoggedIn")
@@ -36,8 +38,7 @@ class LoginFragment : Fragment() {
             } else {
                 Toast.makeText(getContext(), "Please verify your e-mail", Toast.LENGTH_SHORT).show()
             }
-
-
+            */
         }
     }
 
@@ -68,6 +69,8 @@ class LoginFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    userLoggedIn()     //DELETE TO SET UP MAIL VERIFICATION + UNCOMMENT BELOW
+                    /*
                     if (auth.currentUser!!.isEmailVerified())
                     {
                         Toast.makeText(getContext(), "Logged in", Toast.LENGTH_SHORT).show()
@@ -78,6 +81,7 @@ class LoginFragment : Fragment() {
                         Toast.makeText(getContext(), "Please verify e-mail", Toast.LENGTH_SHORT).show();
                         Log.w(ContentValues.TAG,"loginWithEmail:failure:Email not verified")
                     }
+                    */
                 } else {
                     Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_LONG).show()
                     Log.w(ContentValues.TAG, "loginWithEmail:failure:Wrong email or password", task.exception)

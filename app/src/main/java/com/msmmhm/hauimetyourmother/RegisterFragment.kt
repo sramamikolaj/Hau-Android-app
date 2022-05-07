@@ -12,12 +12,17 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.msmmhm.hauimetyourmother.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +36,6 @@ class RegisterFragment : Fragment() {
         binding = FragmentRegisterBinding.inflate(layoutInflater)
         return binding.root
     }
-    //TEST 2
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.GoToLoginButton.setOnClickListener{
@@ -53,14 +57,20 @@ class RegisterFragment : Fragment() {
                         //Toast.makeText(getContext(), "Registered", Toast.LENGTH_LONG).show()
                         Log.w(TAG, "createUserWithEmail:success", task.exception)
 
-                        val user = Firebase.auth.currentUser
-                        user!!.sendEmailVerification()
+                        val createdUser: UserProfile = UserProfile()
+                        createdUser.setData(email.substring(0, email.indexOf('@')), email)
+                        createdUser.updateToDatabase()
+
+                        /////////Email verification -> uncomment later/////////
+                        //val user = Firebase.auth.currentUser
+                        /* user!!.sendEmailVerification()
                             .addOnSuccessListener {
                                 //Toast.makeText(getContext(), "Instructions Sent...", Toast.LENGTH_SHORT).show()
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(getContext(), "Failed to send due to " + e.message, Toast.LENGTH_SHORT).show()
-                            }
+                            } */
+                        //////////////////////////////////////////////////////
 
                         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     } else {
