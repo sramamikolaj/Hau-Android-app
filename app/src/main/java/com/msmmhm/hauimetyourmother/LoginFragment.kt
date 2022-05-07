@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.contentValuesOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -33,10 +34,10 @@ class LoginFragment : Fragment() {
             {
                 Log.w(ContentValues.TAG,"userLoggedIn")
                 userLoggedIn()
+                Toast.makeText(getContext(), "Logged", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(getContext(), "Please verify your e-mail", Toast.LENGTH_SHORT).show()
             }
-
 
         }
     }
@@ -63,27 +64,30 @@ class LoginFragment : Fragment() {
         val email = binding.LoginEmailInput.text.toString()
         val password = binding.LoginPasswordInput.text.toString()
 
-
-
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    if (auth.currentUser!!.isEmailVerified())
+                    if (auth.currentUser!!.isEmailVerified)
                     {
                         Toast.makeText(getContext(), "Logged in", Toast.LENGTH_SHORT).show()
                         Log.w(ContentValues.TAG, "loginWithEmail:success"+auth.currentUser.toString(), task.exception)
                         userLoggedIn()
                     } else
                     {
+                        //Toast.makeText(context,errorCode.toString(),Toast.LENGTH_SHORT).show()
                         Toast.makeText(getContext(), "Please verify e-mail", Toast.LENGTH_SHORT).show();
                         Log.w(ContentValues.TAG,"loginWithEmail:failure:Email not verified")
                     }
                 } else {
-                    Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_LONG).show()
+                    val errorCode = task.exception!!.message
+                    Toast.makeText(context,errorCode.toString(),Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_LONG).show()
                     Log.w(ContentValues.TAG, "loginWithEmail:failure:Wrong email or password", task.exception)
                 }
             }
     }
+
+
 
     private fun userLoggedIn(){
         val i = Intent(this.context, MainActivity::class.java)
