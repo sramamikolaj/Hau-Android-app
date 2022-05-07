@@ -14,49 +14,44 @@
 
         <Button
             android:id="@+id/SignOutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_width="189dp"
+            android:layout_height="43dp"
+            android:layout_marginBottom="50dp"
             android:text="@string/sign_out_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/FirestoreTestButton"
-            app:layout_constraintVertical_bias="0.14" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/TempLoggedAsText"
+            android:id="@+id/Username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="86dp"
-            android:text="Currently logged in as:"
-            android:textSize="17sp"
+            android:layout_marginTop="16dp"
+            android:text="Username"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilePicture"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/defaultprofilepicture"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/UserEmail"
+            android:id="@+id/EmailAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="email"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/TempLoggedAsText"
-            app:layout_constraintStart_toStartOf="@+id/TempLoggedAsText"
-            app:layout_constraintTop_toBottomOf="@+id/TempLoggedAsText" />
-
-        <Button
-            android:id="@+id/FirestoreTestButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:text="Test Button"
-            android:textSize="12sp"
+            android:layout_marginTop="16dp"
+            android:text="Email address"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.621"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/UserEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/Username" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

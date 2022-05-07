@@ -32,8 +32,11 @@ class ManagementFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentManagementBinding.inflate(layoutInflater)
+        updateTextViews()
         return binding.root
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,10 +49,12 @@ class ManagementFragment : Fragment() {
             activity?.finish()
             startActivity(i)
         }
-        binding.FirestoreTestButton.setOnClickListener {
-            val test = (activity as MainActivity).userProfile.getHashMap().get("username")
-            Toast.makeText(context, test, Toast.LENGTH_SHORT).show()
-        }
+    }
+
+
+    private fun updateTextViews() {
+        binding.Username.text = (activity as MainActivity).userProfile.getHashMap()["username"]
+        binding.EmailAddress.text = (activity as MainActivity).userProfile.getHashMap()["email"]
     }
 
 }

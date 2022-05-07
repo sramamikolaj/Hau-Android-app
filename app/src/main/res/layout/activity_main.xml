@@ -9,10 +9,10 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/MainNavigation"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="409dp"
-        android:layout_height="599dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/NavigationBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,13 +22,15 @@
         android:id="@+id/NavigationBar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/GoToFriends"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:alpha="0.5"
             app:layout_constraintEnd_toStartOf="@+id/GoToDashboard"
@@ -38,7 +40,7 @@
 
         <ImageView
             android:id="@+id/GoToManagement"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:alpha="0.5"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +50,7 @@
 
         <ImageView
             android:id="@+id/GoToDashboard"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toStartOf="@+id/GoToManagement"
             app:layout_constraintHorizontal_bias="0.5"
