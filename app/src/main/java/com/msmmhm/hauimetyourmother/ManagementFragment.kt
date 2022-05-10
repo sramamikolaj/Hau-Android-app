@@ -1,11 +1,13 @@
 package com.msmmhm.hauimetyourmother
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,7 +92,7 @@ class ManagementFragment : Fragment() {
         binding.profilePicture.buildDrawingCache()
         val bitmap = (binding.profilePicture.drawable as BitmapDrawable).bitmap
         val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 45, baos)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 5, baos)
         val data = baos.toByteArray()
         mountainImagesRef.putBytes(data)
 
@@ -98,9 +100,12 @@ class ManagementFragment : Fragment() {
     }
     private fun loadWithGlide() {
         val storageReference = Firebase.storage.reference.child("ProfilePictures/${auth.currentUser?.uid.toString()}.jpg")
+        Log.d(TAG, "NAME IS: ${storageReference.name}")
         Glide.with(this /* context */)
             .load(storageReference)
+            .error(R.drawable.defaultprofilepicture)
             .into(binding.profilePicture)
+
     }
 
 }

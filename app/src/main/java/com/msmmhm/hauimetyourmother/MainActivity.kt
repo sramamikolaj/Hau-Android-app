@@ -39,8 +39,13 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun goToFriends(){
-        Snackbar.make(binding.root, "Not yet implemented", Snackbar.LENGTH_SHORT)
-            .show()
+        findNavController(R.id.MainNavigation).navigate(R.id.friendFragment) //Not working with binding
+
+        //Later to put into function to make code more sexy
+        binding.GoToDashboard.alpha = 0.5F
+        binding.GoToManagement.alpha = 0.5F
+        binding.GoToFriends.alpha = 1F
+        //Later animated
     }
 
     private fun goToManagement(){

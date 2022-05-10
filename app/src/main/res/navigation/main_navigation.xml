@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_managementFragment"
             app:destination="@id/managementFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_friendFragment"
+            app:destination="@id/friendFragment" />
     </fragment>
     <fragment
         android:id="@+id/managementFragment"
@@ -22,5 +25,20 @@
         <action
             android:id="@+id/action_managementFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_managementFragment_to_friendFragment"
+            app:destination="@id/friendFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendFragment"
+        android:name="com.msmmhm.hauimetyourmother.FriendFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" >
+        <action
+            android:id="@+id/action_friendFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_friendFragment_to_managementFragment"
+            app:destination="@id/managementFragment" />
     </fragment>
 </navigation>
