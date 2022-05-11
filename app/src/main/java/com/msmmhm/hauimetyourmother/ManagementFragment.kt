@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -59,6 +61,27 @@ class ManagementFragment : Fragment() {
         binding.profilePicture.setOnClickListener {
             openGallery()
         }
+        binding.EditUsernameButton.setOnClickListener{
+            changeNickname()
+        }
+        binding.SaveNewUSernameButton.setOnClickListener{
+            nicknameChanged()
+        }
+
+    }
+
+    private fun nicknameChanged() {
+        val newUsername = binding.EditNicknameField.text.toString()
+        binding.EditNicknameField.text.clear()
+        binding.Username.text = newUsername
+        (activity as MainActivity).userProfile.setUsername(newUsername)
+
+
+        binding.Username.visibility = VISIBLE
+        binding.EditUsernameButton.visibility = VISIBLE
+        binding.EditNicknameField.visibility = INVISIBLE
+        binding.SaveNewUSernameButton.visibility = INVISIBLE
+
     }
 
 
@@ -66,7 +89,14 @@ class ManagementFragment : Fragment() {
         binding.Username.text = (activity as MainActivity).userProfile.getHashMap()["username"]
         binding.EmailAddress.text = (activity as MainActivity).userProfile.getHashMap()["email"]
     }
+    private fun changeNickname(){
+        binding.Username.visibility = INVISIBLE
+        binding.EditUsernameButton.visibility = INVISIBLE
+        binding.EditNicknameField.visibility = VISIBLE
+        binding.SaveNewUSernameButton.visibility = VISIBLE
+        binding.EditNicknameField.setText((activity as MainActivity).userProfile.getHashMap()["username"])
 
+    }
 
     private fun openGallery() {
         val intent = Intent()

@@ -18,10 +18,14 @@ class UserProfile(
     private var username = ""
     private var email = ""
 
-
+    fun setUsername(usernameToSet: String){
+        username = usernameToSet
+        userProfiles.document(auth.currentUser?.uid.toString()).set(getHashMap())
+    }
     fun setData(usernameToSet: String, emailToSet: String){
         username = usernameToSet
         email = emailToSet
+        userProfiles.document(auth.currentUser?.uid.toString()).set(getHashMap())
     }
     fun getHashMap(): HashMap<String, String> {
         return hashMapOf(

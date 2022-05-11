@@ -53,6 +53,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Username" />
 
+        <EditText
+            android:id="@+id/EditNicknameField"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/Username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Username"
+            app:layout_constraintVertical_bias="0.882" />
+
+        <ImageView
+            android:id="@+id/EditUsernameButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/pencilicon"
+            app:layout_constraintBottom_toBottomOf="@+id/Username"
+            app:layout_constraintStart_toEndOf="@+id/Username"
+            app:layout_constraintTop_toTopOf="@+id/Username" />
+
+        <ImageView
+            android:id="@+id/SaveNewUSernameButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="false"
+            android:src="@drawable/floppyicon"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/EditNicknameField"
+            app:layout_constraintStart_toEndOf="@+id/EditNicknameField"
+            app:layout_constraintTop_toTopOf="@+id/EditNicknameField" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
