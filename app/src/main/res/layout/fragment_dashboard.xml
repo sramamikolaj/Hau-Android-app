@@ -25,4 +25,17 @@
         app:layout_constraintEnd_toEndOf="@+id/TempText_1"
         app:layout_constraintStart_toStartOf="@+id/TempText_1"
         app:layout_constraintTop_toBottomOf="@+id/TempText_1" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/AddEventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        app:tint="@color/background_light"
+        app:backgroundTint="@color/medium_brown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>

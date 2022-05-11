@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.msmmhm.hauimetyourmother.databinding.FragmentDashboardBinding
+import com.msmmhm.hauimetyourmother.databinding.FragmentAddEventBinding
 
 
-class DashboardFragment : Fragment() {
-    lateinit var binding: FragmentDashboardBinding
+class AddEventFragment : Fragment() {
+    lateinit var binding: FragmentAddEventBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,11 +20,8 @@ class DashboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDashboardBinding.inflate(layoutInflater)
+        binding = FragmentAddEventBinding.inflate(layoutInflater)
 
-        binding.AddEventButton.setOnClickListener{
-            findNavController().navigate(R.id.action_dashboardFragment_to_addEventFragment)
-        }
 
         return binding.root
     }
