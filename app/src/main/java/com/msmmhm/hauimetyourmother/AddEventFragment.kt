@@ -46,7 +46,7 @@ class AddEventFragment : Fragment() {
             MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_24H)
                 .setHour(18)
-                .setMinute(0)
+                .setMinute(30)
                 .build()
         timePicker.show(parentFragmentManager, timePicker.toString())
 
@@ -56,6 +56,8 @@ class AddEventFragment : Fragment() {
             time = "${Hour}:${Minute}"
             binding.TimeSelector.text = time
         }
+
+
 
     }
 
