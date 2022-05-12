@@ -74,7 +74,7 @@ class ManagementFragment : Fragment() {
         val newUsername = binding.EditNicknameField.text.toString()
         binding.EditNicknameField.text.clear()
         binding.Username.text = newUsername
-        (activity as MainActivity).userProfile.setUsername(newUsername)
+        //(activity as MainActivity).userProfile.setUsername(newUsername)
 
 
         binding.Username.visibility = VISIBLE
