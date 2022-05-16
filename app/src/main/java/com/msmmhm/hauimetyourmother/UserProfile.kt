@@ -14,6 +14,7 @@ class UserProfile(
     private var auth: FirebaseAuth = Firebase.auth
     private var userProfiles: CollectionReference = FirebaseFirestore.getInstance().collection("userProfiles")
 
+    //var test = userProfiles.
     //User's profile variables:
     private var username = ""
     private var email = ""

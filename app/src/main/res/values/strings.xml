@@ -6,4 +6,6 @@
     <string name="LoginButton">Already have an account? \n Log in now!</string>
     <string name="RegisterButton">Register</string>
     <string name="sign_out_button">Sign out</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
