@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.msmmhm.hauimetyourmother.databinding.FragmentItemListBinding
 import com.msmmhm.hauimetyourmother.placeholder.PlaceholderContent
 
@@ -25,12 +28,21 @@ class FriendFragment : Fragment() {
 
         binding = FragmentItemListBinding.inflate(inflater, container, false)
 
+        val addFriendButt = binding.addFriendButton
+        addFriendButt.setOnClickListener {
+            //Toast.makeText(context,"Test FAB.", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_friendFragment_to_add_friend)
+        }
+
         with(binding.list) {
             layoutManager = LinearLayoutManager(context)
             adapter = MyFriendRecyclerViewAdapter(PlaceholderContent.ITEMS)
 
             return binding.root
         }
+
+
+
         /*val view = inflater.inflate(R.layout.fragment_item_list, container, false)
 
         // Set the adapter

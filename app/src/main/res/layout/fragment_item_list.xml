@@ -7,6 +7,19 @@
     tools:context=".FriendFragment"   >
 
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addFriendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        app:tint="@color/background_light"
+        app:backgroundTint="@color/medium_brown"
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:name="com.msmmhm.hauimetyourmother.FriendFragment"
@@ -17,6 +30,7 @@
         app:layoutManager="LinearLayoutManager"
         tools:context=".FriendFragment"
         tools:listitem="@layout/fragment_item" >
+
     </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

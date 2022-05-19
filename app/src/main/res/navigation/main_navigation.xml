@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_friendFragment_to_managementFragment"
             app:destination="@id/managementFragment" />
+        <action
+            android:id="@+id/action_friendFragment_to_add_friend"
+            app:destination="@id/addFriendFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEventFragment"
@@ -52,5 +55,14 @@
         <action
             android:id="@+id/action_addEventFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFriendFragment"
+        android:name="com.msmmhm.hauimetyourmother.AddFriendFragment"
+        android:label="fragment_add_friend"
+        tools:layout="@layout/fragment_add_friend" >
+        <action
+            android:id="@+id/action_add_friend_to_friendFragment"
+            app:destination="@id/friendFragment" />
     </fragment>
 </navigation>
