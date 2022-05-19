@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
@@ -24,6 +21,7 @@ class AddFriendFragment : Fragment() {
     private lateinit var enterData : EditText
     private lateinit var  generateQrButton: Button
     private lateinit var  scanQrCode: Button
+    private lateinit var scannedData: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +38,12 @@ class AddFriendFragment : Fragment() {
         enterData = binding.enterText
         generateQrButton = binding.generateQrButton
         scanQrCode = binding.scanQrButton
+        scannedData = binding.scannedData
 
 
         generateQrButton.setOnClickListener{
             val data = enterData.text.toString().trim()
+
 
             if(data.isEmpty()) {
                 Toast.makeText(context,"enter some data",Toast.LENGTH_SHORT).show()
@@ -73,6 +73,9 @@ class AddFriendFragment : Fragment() {
         scanQrCode.setOnClickListener {
             findNavController().navigate(R.id.action_addFriendFragment_to_addFriendQrScanFragment)
         }
+
+        scannedData.text = "test"
+
 
 
         return binding.root
