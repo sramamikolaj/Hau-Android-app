@@ -2,15 +2,11 @@ package com.msmmhm.hauimetyourmother
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.msmmhm.hauimetyourmother.databinding.FragmentItemListBinding
 import com.msmmhm.hauimetyourmother.placeholder.PlaceholderContent
 
@@ -28,8 +24,8 @@ class FriendFragment : Fragment() {
 
         binding = FragmentItemListBinding.inflate(inflater, container, false)
 
-        val addFriendButt = binding.addFriendButton
-        addFriendButt.setOnClickListener {
+        val addFriendButton = binding.addFriendButton
+        addFriendButton.setOnClickListener {
             //Toast.makeText(context,"Test FAB.", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_friendFragment_to_add_friend)
         }

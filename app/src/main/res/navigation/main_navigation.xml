@@ -64,5 +64,17 @@
         <action
             android:id="@+id/action_add_friend_to_friendFragment"
             app:destination="@id/friendFragment" />
+        <action
+            android:id="@+id/action_addFriendFragment_to_addFriendQrScanFragment"
+            app:destination="@id/addFriendQrScanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFriendQrScanFragment"
+        android:name="com.msmmhm.hauimetyourmother.AddFriendQrScanFragment"
+        android:label="fragment_add_friend_qr_scan"
+        tools:layout="@layout/fragment_add_friend_qr_scan" >
+        <action
+            android:id="@+id/action_addFriendQrScanFragment_to_addFriendFragment"
+            app:destination="@id/addFriendFragment" />
     </fragment>
 </navigation>
