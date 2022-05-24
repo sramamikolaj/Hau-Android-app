@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -61,7 +62,7 @@ class AddEventFragment : Fragment() {
                 editor.putString("selectedCity",selectedCity)
                 editor.commit()
 
-                
+
 
             }
 
@@ -94,7 +95,7 @@ class AddEventFragment : Fragment() {
 
         val newEvent: Event = Event(date, time, park)
         newEvent.saveToDatabase()
-
+        findNavController().popBackStack()
 
     }
 

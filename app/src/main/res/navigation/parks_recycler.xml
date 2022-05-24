@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parks_recycler"
+    app:startDestination="@id/parkFragment">
+
+    <fragment
+        android:id="@+id/parkFragment"
+        android:name="com.msmmhm.hauimetyourmother.ParkFragment"
+        android:label="fragment_item_list_park"
+        tools:layout="@layout/fragment_item_list_park" >
+        <action
+            android:id="@+id/action_parkFragment_self"
+            app:destination="@id/parkFragment"
+            app:popUpTo="@+id/parks_recycler"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

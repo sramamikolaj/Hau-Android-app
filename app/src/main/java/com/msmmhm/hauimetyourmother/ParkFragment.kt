@@ -23,9 +23,8 @@ import com.google.firebase.ktx.Firebase
 import android.widget.Toast
 
 import android.R.attr.data
-
-
-
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 
 
 /**
@@ -61,7 +60,7 @@ class ParkFragment : Fragment(), ParkListener {
                 val park = sharedPref.getString("selectedCity", "Poznan")!!
 
                 val docRef = parks.document(park)
-                docRef.get()
+                val addOnFailureListener = docRef.get()
                     .addOnSuccessListener { document ->
                         if (document != null) {
                             val data = document.data as Map<String, Map<String, String>>
@@ -74,6 +73,7 @@ class ParkFragment : Fragment(), ParkListener {
                     .addOnFailureListener { exception ->
                         Log.d(ContentValues.TAG, "get failed with ", exception)
                     }
+                addOnFailureListener
 
 
             }
@@ -81,7 +81,9 @@ class ParkFragment : Fragment(), ParkListener {
         var sharedPref: SharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val mOnSharedPreferenceChangeListener =
             OnSharedPreferenceChangeListener { sharedPreferences, key ->
-
+                lifecycleScope.launchWhenResumed {
+                    findNavController().navigate(R.id.action_parkFragment_self)
+                }
             }
         sharedPref.registerOnSharedPreferenceChangeListener(mOnSharedPreferenceChangeListener)
         return view
