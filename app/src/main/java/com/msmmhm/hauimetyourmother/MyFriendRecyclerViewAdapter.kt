@@ -2,11 +2,10 @@ package com.msmmhm.hauimetyourmother
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import com.msmmhm.hauimetyourmother.placeholder.PlaceholderContent.PlaceholderItem
+import com.msmmhm.hauimetyourmother.placeholder.PlaceholderParksContent.PlaceholderItem
 import com.msmmhm.hauimetyourmother.databinding.FragmentItemBinding
 
 /**
