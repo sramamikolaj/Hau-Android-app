@@ -74,14 +74,13 @@ class ManagementFragment : Fragment() {
         val newUsername = binding.EditNicknameField.text.toString()
         binding.EditNicknameField.text.clear()
         binding.Username.text = newUsername
-        //(activity as MainActivity).userProfile.setUsername(newUsername)
+        (activity as MainActivity).userProfile.setUsername(newUsername)
 
 
         binding.Username.visibility = VISIBLE
         binding.EditUsernameButton.visibility = VISIBLE
         binding.EditNicknameField.visibility = INVISIBLE
         binding.SaveNewUSernameButton.visibility = INVISIBLE
-
     }
 
 
@@ -135,7 +134,6 @@ class ManagementFragment : Fragment() {
             .load(storageReference)
             .error(R.drawable.defaultprofilepicture)
             .into(binding.profilePicture)
-
     }
 
 

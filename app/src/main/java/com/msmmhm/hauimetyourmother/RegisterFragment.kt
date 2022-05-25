@@ -61,6 +61,7 @@ class RegisterFragment : Fragment() {
                         createdUser.setData(email.substring(0, email.indexOf('@')), email)
                         createdUser.updateToDatabase()
 
+
                         /////////Email verification -> uncomment later/////////
                         //val user = Firebase.auth.currentUser
                         /* user!!.sendEmailVerification()

@@ -30,7 +30,10 @@ class UserProfile(
             "email" to email
         )
     }
-
+    fun setUsername(toSet: String){
+        username = toSet
+        updateToDatabase()
+    }
     fun updateToDatabase(){
         userProfiles.document(auth.currentUser?.uid.toString()).set(getHashMap())
     }
@@ -50,4 +53,5 @@ class UserProfile(
                 Log.d(TAG, "get failed with ", exception)
             }
     }
+
 }
