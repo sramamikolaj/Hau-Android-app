@@ -1,6 +1,8 @@
 package com.msmmhm.hauimetyourmother.placeholder
 
 import android.content.ContentValues
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -32,6 +34,7 @@ object Friend {
 
     init {
         //Document friendsLists of current user
+
         val docRef = friendsLists.document(auth.currentUser?.uid.toString())
 
 
@@ -42,6 +45,7 @@ object Friend {
                     //Data and list friendList of current user
                     val data = document.data
                     val list = (data?.get("friendList")) as ArrayList<String>
+
                     var friend : FriendItem
                     Log.d(ContentValues.TAG, "FRIEND::CLASS:List = "+"${list!!::class.simpleName}")
                     //println("${list::class.simpleName}")
@@ -110,13 +114,47 @@ object Friend {
     /**
      * A placeholder item representing a piece of content.
      */
-    data class FriendItem(val id: String, var friendName: String, var email: String) {
+    data class FriendItem(val id: String, var friendName: String, var email: String, val active: ACTIVE=ACTIVE.INACTIVE) : Parcelable {
+        constructor(parcel: Parcel) : this(
+                parcel.readString()!!,
+                parcel.readString()!!,
+                parcel.readString()!!,
+                ACTIVE.values()[parcel.readInt()]) {
+        }
+
         override fun toString(): String = friendName
 
         fun print()
         {
             Log.d(ContentValues.TAG,"FRIEND_ITEM::PRINT, id="+id+" name="+friendName+" email="+email)
         }
+
+        override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeString(id)
+            parcel.writeString(friendName)
+            parcel.writeString(email)
+            parcel.writeInt(active.ordinal)
+        }
+
+        override fun describeContents(): Int {
+            return 0
+        }
+
+        companion object CREATOR : Parcelable.Creator<FriendItem> {
+            override fun createFromParcel(parcel: Parcel): FriendItem {
+                return FriendItem(parcel)
+            }
+
+            override fun newArray(size: Int): Array<FriendItem?> {
+                return arrayOfNulls(size)
+            }
+        }
     }
 }
+
+enum class ACTIVE
+{
+    ACTIVE,INACTIVE
+}
+
 

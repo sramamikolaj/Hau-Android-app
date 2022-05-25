@@ -6,24 +6,30 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/friendPicture"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_weight="1"
-        tools:srcCompat="@drawable/defaultprofilepicture" />
+        tools:src="@drawable/defaultprofilepicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/activeIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/presence_invisible" />
 
     <TextView
         android:id="@+id/friendNickname"
         android:layout_width="32dp"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/friendEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="10"
         android:text="TextView" />
 

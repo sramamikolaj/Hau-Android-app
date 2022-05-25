@@ -1,13 +1,16 @@
 package com.msmmhm.hauimetyourmother
 
+import android.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.msmmhm.hauimetyourmother.databinding.FragmentItemListBinding
 import com.msmmhm.hauimetyourmother.placeholder.Friend
+
 
 /**
  * A fragment representing a list of Items.
@@ -15,6 +18,10 @@ import com.msmmhm.hauimetyourmother.placeholder.Friend
 class FriendFragment : Fragment() {
 
     private lateinit var binding: FragmentItemListBinding
+    private lateinit var  mSwipeRefreshLayout: SwipeRefreshLayout
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,31 +32,17 @@ class FriendFragment : Fragment() {
 
         with(binding.list) {
             layoutManager = LinearLayoutManager(context)
-            adapter = MyFriendRecyclerViewAdapter(Friend.ITEMS)
+            adapter = MyFriendRecyclerViewAdapter(Friend.ITEMS,container!!.context)
 
             return binding.root
 
         }
-        /*val view = inflater.inflate(R.layout.fragment_item_list, container, false)
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = MyFriendRecyclerViewAdapter(PlaceholderContent.ITEMS)
-            }
-        }
-        return view
-    }
-    */
-
-
-        //private var columnCount = 1
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
 
 
 }

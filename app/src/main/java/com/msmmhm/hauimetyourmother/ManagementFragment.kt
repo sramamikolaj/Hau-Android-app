@@ -115,7 +115,7 @@ class ManagementFragment : Fragment() {
         }
 
     private fun profilePictureChange(uri: Uri?) {
-        val storage = Firebase.storage
+        /*val storage = Firebase.storage
         val storageRef = storage.reference
         val mountainImagesRef = storageRef.child("ProfilePictures/${auth.currentUser?.uid.toString()}.jpg")
         binding.profilePicture.isDrawingCacheEnabled = true
@@ -124,7 +124,7 @@ class ManagementFragment : Fragment() {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 5, baos)
         val data = baos.toByteArray()
-        mountainImagesRef.putBytes(data)
+        mountainImagesRef.putBytes(data)*/
 
         loadWithGlide()
     }
@@ -137,5 +137,7 @@ class ManagementFragment : Fragment() {
             .into(binding.profilePicture)
 
     }
+
+
 
 }
