@@ -38,8 +38,9 @@ class AddFriendQrScanFragment : Fragment() {
         codeScanner = CodeScanner(activity, scannerView)
         codeScanner.decodeCallback = DecodeCallback {
             activity.runOnUiThread {
-                Toast.makeText(activity, it.text, Toast.LENGTH_SHORT).show()
                 scannedText = it.text
+                Toast.makeText(activity, scannedText, Toast.LENGTH_SHORT).show()
+
             }
         }
 //        refreshToast.setOnClickListener{

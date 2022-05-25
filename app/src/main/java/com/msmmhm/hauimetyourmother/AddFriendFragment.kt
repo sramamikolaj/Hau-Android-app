@@ -3,12 +3,17 @@ package com.msmmhm.hauimetyourmother
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
@@ -21,7 +26,12 @@ class AddFriendFragment : Fragment() {
     private lateinit var enterData : EditText
     private lateinit var  generateQrButton: Button
     private lateinit var  scanQrCode: Button
-    private lateinit var scannedData: TextView
+    //private lateinit var scannedData: TextView
+
+    private var auth: FirebaseAuth = Firebase.auth
+    private var userProfiles: CollectionReference = FirebaseFirestore.getInstance().collection("userProfiles")
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,14 +45,20 @@ class AddFriendFragment : Fragment() {
         binding = FragmentAddFriendBinding.inflate(layoutInflater)
 
         qrCodeView = binding.qrCodeImg
-        enterData = binding.enterText
+        //enterData = binding.enterText
         generateQrButton = binding.generateQrButton
         scanQrCode = binding.scanQrButton
-        scannedData = binding.scannedData
+        //scannedData = binding.scannedData
+
+        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+
 
 
         generateQrButton.setOnClickListener{
-            val data = enterData.text.toString().trim()
+//            val data = enterData.text.toString().trim()
+            val data = currentFirebaseUser!!.uid
+
+
 
 
             if(data.isEmpty()) {
@@ -74,8 +90,7 @@ class AddFriendFragment : Fragment() {
             findNavController().navigate(R.id.action_addFriendFragment_to_addFriendQrScanFragment)
         }
 
-        scannedData.text = "test"
-
+        //scannedData.text = "test"
 
 
         return binding.root
