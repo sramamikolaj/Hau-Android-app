@@ -22,6 +22,6 @@ Hau! is an Android application created with Kotlin using Android Studio and impl
 ![PROFILE](/ReadmeImages/profile.png)
 
 ## Technical background 
-Game written is written in C++, using SFML and OpenGL aspects. It implements collision system and primitive AI of enemies. 
+Kotlin, Firebase
 
 *In later phase od development no new changes have beed added to GitHub, files does not represent final version*
